@@ -1,3 +1,4 @@
+const { products } = require("../api");
 const { ProductRepository } = require("../database");
 const { FormateData } = require("../utils");
 const { APIError } = require('../utils/app-errors');
@@ -73,6 +74,21 @@ class ProductService {
         } catch (err) {
             throw new APIError('Data Not found')
         }
+    }
+
+    async GetProductPayload(userId,{product,qty}, event){
+
+       const products=await this.repository.FindById(products);
+
+       if(products){
+        const payload={
+            events:event,
+            data:{userId,product,qty}
+        }
+        return FormateData(payload)
+       }else{
+        return FormateData({error:"no product available"})
+       }
     }
      
 }
