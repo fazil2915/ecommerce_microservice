@@ -125,7 +125,7 @@ class ShoppingRepository {
                    
                     profile.orders.push(orderResult);
     
-                    await profile.save();
+                    await cart.save();
     
                     return orderResult;
                 }

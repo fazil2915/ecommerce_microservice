@@ -28,6 +28,17 @@ class ShoppingService {
       throw new APIError("Data Not found", err);
     }
   }
+
+  async ManageCart(customerId,item,qty,isRemove){
+   try {
+    const cartResult= await this.repository.AddCartItem()
+   } catch (error) {
+    throw new APIError("Data Not found", err);
+   }
+  }
 }
+
+
+  
 
 module.exports = ShoppingService;
